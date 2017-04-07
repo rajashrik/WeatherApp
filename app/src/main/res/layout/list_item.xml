@@ -10,7 +10,7 @@
           android:textSize="20sp"
           android:fontFamily="sans-serif"
           android:typeface="normal"
-          android:background="#661A54"
+          android:background="@color/purple"
           android:textStyle="normal"
           android:gravity="center_vertical"
           android:textAlignment="center"
