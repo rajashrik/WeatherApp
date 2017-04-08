@@ -1,5 +1,6 @@
 package com.example.rajashrk.weatherapp;
 
+import Tasks.AsyncWeatherTask;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener  {
 
     private String[] cityArray = {"Hyderabad", "Mumbai", "Delhi", "Patna", "Nasik", "Nagpur", "Kolkata"};
 
@@ -28,7 +29,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(this,DetailWeatherActivity.class);
-            startActivity(intent);
+        String weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityArray[position] + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
+
+        AsyncWeatherTask task = new AsyncWeatherTask();
+        task.execute(weatherUrl);
+//        Intent intent = new Intent(this,DetailWeatherActivity.class);
+//        startActivity(intent);
     }
 }
