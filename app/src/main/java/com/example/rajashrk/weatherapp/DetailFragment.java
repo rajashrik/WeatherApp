@@ -28,7 +28,8 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
         TextView v = (TextView)view.findViewById(R.id.text);
-        v.setText("Hi");
+        String details = getArguments().getString("details");
+        v.setText(details);
         return view;
     }
 

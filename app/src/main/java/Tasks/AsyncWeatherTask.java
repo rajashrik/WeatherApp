@@ -2,6 +2,7 @@ package Tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.example.rajashrk.weatherapp.WeatherResponseListener;
 import okhttp3.*;
 
 import javax.xml.transform.Result;
@@ -12,13 +13,17 @@ import java.io.IOException;
  */
 public class AsyncWeatherTask  extends AsyncTask<String, Void, String>{
 
+
+    WeatherResponseListener listener;
     @Override
     protected void onPostExecute(String o) {
         super.onPostExecute(o);
+        listener.weatherDataReceived(o);
     }
 
-    public AsyncWeatherTask() {
+    public AsyncWeatherTask(WeatherResponseListener listener) {
         super();
+        this.listener = listener;
     }
 
     @Override

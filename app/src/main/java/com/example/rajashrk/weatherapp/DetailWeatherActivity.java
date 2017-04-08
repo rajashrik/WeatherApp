@@ -9,10 +9,13 @@ import android.view.MenuItem;
 
 public class DetailWeatherActivity extends AppCompatActivity {
 
+    private String weatherData = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_weather);
+        weatherData = getIntent().getStringExtra("weatherData");
         showDetailWeatherPage();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -21,6 +24,9 @@ public class DetailWeatherActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment = new DetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("details",weatherData);
+        fragment.setArguments(bundle);
         transaction.add(R.id.container, fragment, "details");
         transaction.commit();
     }

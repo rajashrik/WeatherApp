@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener  {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener ,WeatherResponseListener {
 
     private String[] cityArray = {"Hyderabad", "Mumbai", "Delhi", "Patna", "Nasik", "Nagpur", "Kolkata"};
 
@@ -30,10 +30,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityArray[position] + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
-
-        AsyncWeatherTask task = new AsyncWeatherTask();
+        AsyncWeatherTask task = new AsyncWeatherTask(this);
         task.execute(weatherUrl);
-//        Intent intent = new Intent(this,DetailWeatherActivity.class);
-//        startActivity(intent);
+    }
+
+    @Override
+    public void weatherDataReceived(String data) {
+        Intent intent = new Intent(this,DetailWeatherActivity.class);
+        intent.putExtra("weatherData",data);
+        startActivity(intent);
     }
 }
