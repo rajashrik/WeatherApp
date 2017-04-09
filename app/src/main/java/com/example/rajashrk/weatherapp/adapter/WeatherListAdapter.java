@@ -38,7 +38,7 @@ public class WeatherListAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
+    public Weather getItem(int position) {
         return weatherList.get(position);
     }
 
