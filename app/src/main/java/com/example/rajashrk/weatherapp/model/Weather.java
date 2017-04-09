@@ -14,6 +14,12 @@ public class Weather {
     private Wind wind;
     private Sys sys;
 
+    private String dt;
+
+    public String getDatetime() {
+        return dt;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,6 +43,7 @@ public class Weather {
     public Sys getSys() {
         return sys;
     }
+
 
     public class WeatherDetails {
         private String description;

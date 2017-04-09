@@ -1,14 +1,95 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.example.rajashrk.weatherapp.DetailFragment">
+             tools:context="com.example.rajashrk.weatherapp.DetailFragment"
+             android:orientation="vertical"
+>
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-            android:id="@+id/text"
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+    />
+
+    <TextView
+            android:id="@+id/dateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="right"
+            android:fontFamily="sans-serif"
+    />
+
+    <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:paddingTop="20px"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:fontFamily="sans-serif"
+            android:layout_height="70dp"
+            android:gravity="left"
+            android:layout_below="@id/city"
+    />
+
+
+
+    <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:text="cloudy"
+            android:layout_below="@+id/temperature"
+    />
+
+
+    <TextView
+            android:id="@+id/humidityText"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:text="@string/humidity"
+            android:layout_below="@id/description"/>
+
+
+    <TextView
+            android:id="@+id/humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:layout_toRightOf="@+id/humidityText"
+            android:layout_alignBaseline="@+id/humidityText"
+            android:paddingLeft="5dp"
+            android:text="cloudy"
+    />
+
+    <TextView
+            android:id="@+id/pressureText"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:text="@string/pressure"
+            android:layout_below="@id/humidityText"/>
+
+    <TextView
+            android:id="@+id/pressure"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_toRightOf="@id/pressureText"
+            android:layout_alignBaseline="@+id/pressureText"
+            android:paddingLeft="5dp"
+    />
 
-</FrameLayout>
+
+    <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_below="@id/pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+
+    />
+
+
+</RelativeLayout>
