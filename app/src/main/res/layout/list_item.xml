@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="fill_parent"
-          android:layout_height="190px"
-          android:text="Hello World!"
-          android:textColor="#ffffff"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentRight="true"
-          android:ellipsize="marquee"
-          android:textSize="20sp"
-          android:fontFamily="sans-serif"
-          android:typeface="normal"
-          android:background="@color/purple"
-          android:textStyle="normal"
-          android:gravity="center_vertical"
-          android:textAlignment="center"
->
-</TextView>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/smallPadding"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:paddingLeft="@dimen/smallPadding"
+        android:paddingTop="@dimen/smallPadding"
+        android:layout_toRightOf="@id/weatherIcon"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/weatherDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:paddingLeft="@dimen/smallPadding"
+        android:layout_below="@+id/cityName"
+        android:layout_toRightOf="@id/weatherIcon"
+        android:fontFamily="sans-serif"
+        />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:ellipsize="marquee"
+        android:textSize="17sp"
+        android:typeface="normal" />
+
+</RelativeLayout>
