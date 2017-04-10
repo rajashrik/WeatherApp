@@ -1,6 +1,7 @@
 package com.example.rajashrk.weatherapp;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,19 +15,28 @@ import com.google.gson.Gson;
 
 import Tasks.AsyncWeatherTask;
 
+import java.io.*;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener ,WeatherResponseListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadCities();
+        loadCitiesFromFile();
     }
 
-    private void loadCities() {
-        String weatherUrl = "http://api.openweathermap.org/data/2.5/box/city?bbox=72,10,86,30,6&cnt=10&appid=ebbc66b823072502c81339f5b0b9b042";
-        AsyncWeatherTask task = new AsyncWeatherTask(this);
-        task.execute(weatherUrl);
+    private void loadCitiesFromFile() {
+        AssetManager assetManager = getAssets();
+        try {
+            InputStream inputStream = assetManager.open("cityData.json");
+            Gson gson = new Gson();
+            Reader inputReader = new InputStreamReader(inputStream);
+            WeatherList weatherList = gson.fromJson(inputReader, WeatherList.class);
+            renderWeatherList(weatherList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void renderWeatherList(WeatherList weatherList) {
@@ -34,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ListView view = (ListView) findViewById(R.id.city_list);
         view.setAdapter(weatherListAdapter);
         view.setOnItemClickListener(this);
+    }
+
+    private  void loadCitiesFromAPI(){
+        String weatherUrl = "http://api.openweathermap.org/data/2.5/box/city?bbox=72,10,86,30,6&cnt=10&appid=ebbc66b823072502c81339f5b0b9b042";
+        AsyncWeatherTask task = new AsyncWeatherTask(this);
+        task.execute(weatherUrl);
     }
 
     @Override
