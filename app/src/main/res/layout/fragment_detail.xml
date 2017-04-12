@@ -37,59 +37,11 @@
     />
 
 
-
-    <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="100px"
-            android:text="cloudy"
-            android:layout_below="@+id/temperature"
-    />
-
-
-    <TextView
-            android:id="@+id/humidityText"
-            android:layout_width="wrap_content"
-            android:layout_height="100px"
-            android:text="@string/humidity"
-            android:layout_below="@id/description"/>
-
-
-    <TextView
-            android:id="@+id/humidity"
-            android:layout_width="wrap_content"
-            android:layout_height="100px"
-            android:layout_toRightOf="@+id/humidityText"
-            android:layout_alignBaseline="@+id/humidityText"
-            android:paddingLeft="5dp"
-            android:text="cloudy"
-    />
-
-    <TextView
-            android:id="@+id/pressureText"
-            android:layout_width="wrap_content"
-            android:layout_height="100px"
-            android:text="@string/pressure"
-            android:layout_below="@id/humidityText"/>
-
-    <TextView
-            android:id="@+id/pressure"
+    <ListView
+            android:id="@+id/weather_forecast"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/pressureText"
-            android:layout_alignBaseline="@+id/pressureText"
-            android:paddingLeft="5dp"
-    />
-
-
-    <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_below="@id/pressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-
-    />
+            android:layout_height="wrap_content">
+    </ListView>
 
 
 </RelativeLayout>

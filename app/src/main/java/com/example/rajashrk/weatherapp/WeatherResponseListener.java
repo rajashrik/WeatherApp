@@ -5,4 +5,5 @@ package com.example.rajashrk.weatherapp;
  */
 public interface WeatherResponseListener {
     public void weatherDataReceived(String data);
+    public void weatherForecastReceived(String data);
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:paddingLeft="@dimen/smallPadding"
+        android:paddingTop="@dimen/smallPadding"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:typeface="normal" />
+
+
+    <TextView
+            android:id="@+id/day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:paddingLeft="@dimen/smallPadding"
+            android:paddingTop="@dimen/smallPadding"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:typeface="normal"
+            android:text="Monday"
+    />
+
+
+    <TextView
+            android:id="@+id/temperature_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:ellipsize="marquee"
+            android:textSize="17sp"
+            android:typeface="normal" />
+
+    <TextView
+            android:id="@+id/temperature_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:ellipsize="marquee"
+            android:textSize="17sp"
+            android:typeface="normal" />
+
+</LinearLayout>
