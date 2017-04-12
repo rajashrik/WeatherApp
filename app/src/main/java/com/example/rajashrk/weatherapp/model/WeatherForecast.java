@@ -9,9 +9,17 @@ public class WeatherForecast {
 
     private List<Weather> weather;
     private Temperature temp;
+    private Float pressure;
+    private Float humidity;
 
     public Temperature getTemperature() {
         return temp;
+    }
+    public Float getPressure() {
+        return pressure;
+    }
+    public Float getHumidity() {
+        return humidity;
     }
 
     public Weather getWeather() {

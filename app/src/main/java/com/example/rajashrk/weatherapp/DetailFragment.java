@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.example.rajashrk.weatherapp.adapter.weatherForecastAdapter;
+import com.example.rajashrk.weatherapp.adapter.WeatherForecastAdapter;
 import com.example.rajashrk.weatherapp.model.WeatherForecastResponse;
 import com.google.gson.Gson;
 
@@ -33,7 +33,7 @@ public class DetailFragment extends Fragment {
         Gson jason = new Gson();
         WeatherForecastResponse weatherList = jason.fromJson(details,WeatherForecastResponse.class);
 
-        weatherForecastAdapter weatherForecastAdapter = new weatherForecastAdapter(getActivity(), weatherList.getList());
+        WeatherForecastAdapter weatherForecastAdapter = new WeatherForecastAdapter(getActivity(), weatherList.getList());
         ListView listView = (ListView) view.findViewById(R.id.weather_forecast);
         listView.setAdapter(weatherForecastAdapter);
 

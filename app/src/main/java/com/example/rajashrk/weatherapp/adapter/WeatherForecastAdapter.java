@@ -5,26 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.rajashrk.weatherapp.R;
-import com.example.rajashrk.weatherapp.model.Weather;
 import com.example.rajashrk.weatherapp.model.WeatherForecast;
+import com.example.rajashrk.weatherapp.presenter.WeatherForecastPresenter;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by rajashrk on 4/12/17.
  */
-public class weatherForecastAdapter  extends BaseAdapter {
+public class WeatherForecastAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
     private List<WeatherForecast> weatherList;
 
-    public weatherForecastAdapter(Context context, List<WeatherForecast> weatherList) {
+    public WeatherForecastAdapter(Context context, List<WeatherForecast> weatherList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.weatherList = weatherList;
@@ -62,18 +59,20 @@ public class weatherForecastAdapter  extends BaseAdapter {
     }
 
     private void updateView(View view, int position) {
-        weatherForecastAdapter.ViewHolder viewHolder = (weatherForecastAdapter.ViewHolder) view.getTag();
+        WeatherForecastAdapter.ViewHolder viewHolder = (WeatherForecastAdapter.ViewHolder) view.getTag();
         WeatherForecast weather = weatherList.get(position);
-        String temperature = String.valueOf(weather.getTemperature().getMinimun());
-        viewHolder.temperature_max.setText(temperature);
+        WeatherForecastPresenter presenter = new WeatherForecastPresenter(weather);
+        viewHolder.temperature_max.setText(presenter.getTemperatureMaxIncelcius());
+        viewHolder.temperature_min.setText(presenter.getTemperatureMinIncelcius());
 
     }
 
     private View createView() {
         View view = inflater.inflate(R.layout.list_weather_details_item, null);
-        weatherForecastAdapter.ViewHolder viewHolder = new weatherForecastAdapter.ViewHolder();
+        WeatherForecastAdapter.ViewHolder viewHolder = new WeatherForecastAdapter.ViewHolder();
         viewHolder.cityName = (TextView) view.findViewById(R.id.cityName);
         viewHolder.temperature_max = (TextView) view.findViewById(R.id.temperature_max);
+        viewHolder.temperature_min = (TextView) view.findViewById(R.id.temperature_min);
 
         view.setTag(viewHolder);
         return view;
