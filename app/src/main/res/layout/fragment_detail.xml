@@ -4,6 +4,7 @@
              android:layout_height="match_parent"
              tools:context="com.example.rajashrk.weatherapp.DetailFragment"
              android:orientation="vertical"
+             >
 >
 
     <!-- TODO: Update blank fragment layout -->

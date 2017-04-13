@@ -8,5 +8,7 @@
     <string name="humidity">Humidity</string>
     <string name="sunrise">Sunrise</string>
     <string name="sunset">Sunset</string>
+    <string name="upArrow">↑</string>
+    <string name="downArrow">↓</string>
 
 </resources>

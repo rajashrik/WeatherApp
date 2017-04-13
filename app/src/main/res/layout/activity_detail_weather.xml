@@ -10,13 +10,20 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:name="android.support.PARENT_ACTIVITY"
-        tools:context="com.example.rajashrk.weatherapp.DetailWeatherActivity">
+        tools:context="com.example.rajashrk.weatherapp.DetailWeatherActivity"
+        android:background="@drawable/gradient"
+>
 
     <FrameLayout
             android:id="@+id/container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+    />
 
 </RelativeLayout>

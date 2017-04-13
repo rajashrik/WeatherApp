@@ -56,6 +56,8 @@ public class WeatherForecastAdapter extends BaseAdapter {
         TextView cityName;
         TextView temperature_max;
         TextView temperature_min;
+        TextView up_arrow;
+
     }
 
     private void updateView(View view, int position) {
@@ -64,6 +66,7 @@ public class WeatherForecastAdapter extends BaseAdapter {
         WeatherForecastPresenter presenter = new WeatherForecastPresenter(weather);
         viewHolder.temperature_max.setText(presenter.getTemperatureMaxIncelcius());
         viewHolder.temperature_min.setText(presenter.getTemperatureMinIncelcius());
+        viewHolder.up_arrow.setText(R.string.upArrow);
 
     }
 
@@ -73,6 +76,7 @@ public class WeatherForecastAdapter extends BaseAdapter {
         viewHolder.cityName = (TextView) view.findViewById(R.id.cityName);
         viewHolder.temperature_max = (TextView) view.findViewById(R.id.temperature_max);
         viewHolder.temperature_min = (TextView) view.findViewById(R.id.temperature_min);
+        viewHolder.up_arrow = (TextView) view.findViewById(R.id.temperature_max_arrow);
 
         view.setTag(viewHolder);
         return view;
