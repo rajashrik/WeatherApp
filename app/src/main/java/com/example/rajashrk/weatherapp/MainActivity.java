@@ -7,60 +7,60 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
+import android.widget.TextView;
 import com.example.rajashrk.weatherapp.adapter.WeatherListAdapter;
 import com.example.rajashrk.weatherapp.model.Weather;
 import com.example.rajashrk.weatherapp.model.WeatherForecastResponse;
 import com.example.rajashrk.weatherapp.model.WeatherList;
+import com.example.rajashrk.weatherapp.presenter.WeatherPresenter;
 import com.google.gson.Gson;
 
 import Tasks.AsyncWeatherTask;
 
 import java.io.*;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener ,WeatherResponseListener {
+public class MainActivity extends AppCompatActivity implements Button.OnClickListener, WeatherResponseListener {
 
+    private  Weather currentWeather = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadCitiesFromFile();
-//        loadCities();
+        showWeatherOfCurrentCity();
     }
 
-    private void loadCitiesFromFile() {
+    private void showWeatherOfCurrentCity() {
         AssetManager assetManager = getAssets();
         try {
             InputStream inputStream = assetManager.open("cityData.json");
             Gson gson = new Gson();
             Reader inputReader = new InputStreamReader(inputStream);
-            WeatherList weatherList = gson.fromJson(inputReader, WeatherList.class);
-            renderWeatherList(weatherList);
+            currentWeather = gson.fromJson(inputReader, Weather.class);
+            renderWeatherList();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadCities() {
-        AsyncWeatherTask task = new AsyncWeatherTask(this);
-        String weatherUrl = "http://api.openweathermap.org/data/2.5/box/city?bbox=72,10,86,30,6&cnt=10&appid=ebbc66b823072502c81339f5b0b9b042";
-        task.execute(weatherUrl);
-    }
+    private void renderWeatherList() {
+        WeatherPresenter presenter = new WeatherPresenter(currentWeather);
+        TextView cityName  = (TextView) findViewById(R.id.cityName);
+        cityName.setText(currentWeather.getName());
 
-    private void renderWeatherList(WeatherList weatherList) {
-        WeatherListAdapter weatherListAdapter = new WeatherListAdapter(this, weatherList.getList());
-        ListView view = (ListView) findViewById(R.id.city_list);
-        view.setAdapter(weatherListAdapter);
-        view.setOnItemClickListener(this);
+        TextView temperature  = (TextView) findViewById(R.id.temperature);
+        temperature.setText(presenter.getTemperatureIncelcius());
+
+        Button forecast = (Button) findViewById(R.id.forecastButton);
+        forecast.setOnClickListener(this);
+
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        WeatherListAdapter adapter = (WeatherListAdapter) parent.getAdapter();
-        Weather weather = adapter.getItem(position);
-
-        String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + weather.getName() + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
+    public void onClick(View v) {
+        String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
         AsyncWeatherForecastTask task = new AsyncWeatherForecastTask(this);
         task.execute(weatherUrl);
     }
@@ -71,13 +71,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         String weatherData = gson.toJson(weatherList, WeatherForecastResponse.class);
         intent.putExtra("weatherData", weatherData);
         startActivity(intent);
-    }
-
-    @Override
-    public void weatherDataReceived(String data) {
-        Gson gson = new Gson();
-        WeatherList weatherList = gson.fromJson(data, WeatherList.class);
-        renderWeatherList(weatherList);
     }
 
     @Override

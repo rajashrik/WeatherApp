@@ -18,7 +18,7 @@ public class AsyncWeatherTask  extends AsyncTask<String, Void, String>{
     @Override
     protected void onPostExecute(String o) {
         super.onPostExecute(o);
-        listener.weatherDataReceived(o);
+//        listener.weatherDataReceived(o);
     }
 
     public AsyncWeatherTask(WeatherResponseListener listener) {
