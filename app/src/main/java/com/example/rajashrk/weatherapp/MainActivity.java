@@ -21,6 +21,10 @@ import com.google.gson.Gson;
 import Tasks.AsyncWeatherTask;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener, WeatherResponseListener {
 
@@ -52,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
         TextView temperature  = (TextView) findViewById(R.id.temperature);
         temperature.setText(presenter.getTemperatureIncelcius());
+
+
+        String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
+        TextView date  = (TextView) findViewById(R.id.date);
+        date.setText(weekday_name);
+
 
         Button forecast = (Button) findViewById(R.id.forecastButton);
         forecast.setOnClickListener(this);

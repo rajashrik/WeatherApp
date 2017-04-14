@@ -8,7 +8,7 @@
         tools:context="com.example.rajashrk.weatherapp.MainActivity"
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.example.ParentActivity"
-        >
+        android:background="@drawable/gradient" >
 
     <TextView android:id="@+id/cityName"
               android:layout_width="match_parent"
@@ -20,59 +20,82 @@
               android:paddingTop="10dp"
     />
 
-    <ImageView android:id="@+id/WeatherImage"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/weather_cloudy"
-               android:layout_below="@+id/cityName" android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true" android:layout_marginLeft="136dp"
-               android:layout_marginStart="136dp" android:layout_marginTop="16dp"/>
+    <TextView android:id="@+id/date"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="15dp"
+              android:textStyle="normal"
+              android:layout_below="@+id/cityName"
+              android:text=""
+              android:gravity="center"
+              android:paddingTop="10dp"
+    />
+
+    <ImageView android:id="@+id/weatherImage"
+               android:layout_width="140dp"
+               android:layout_height="100dp"
+               android:src="@drawable/clouds"
+               android:layout_below="@+id/date"
+               android:layout_marginTop="16dp"
+               android:layout_centerHorizontal="true"
+    />
 
 
     <TextView android:id="@+id/weatherDescription"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_below="@+id/WeatherImage"
+              android:layout_below="@+id/weatherImage"
               android:textSize="18dp"
-              android:textStyle="bold"
+              android:textStyle="normal"
               android:text="cloudy"
               android:paddingTop="10dp"
-              android:layout_centerInParent="true"
+              android:layout_centerHorizontal="true"
     />
 
     <TextView android:id="@+id/temperature"
               android:layout_width="wrap_content"
-              android:layout_height="80dp"
+              android:layout_height="wrap_content"
               android:layout_below="@+id/weatherDescription"
               android:textSize="60dp"
-              android:textStyle="bold"
+              android:textStyle="normal"
               android:text="23C"
-              android:gravity="center"
-              android:layout_centerInParent="true"
-              />
+              android:paddingTop="20dp"
+              android:layout_centerHorizontal="true"
+    />
 
-    <Button android:id="@+id/forecastButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Forecast"
-            android:layout_marginLeft="23dp"
-            android:layout_marginStart="23dp"
-            android:layout_below="@+id/temperature"
-            android:layout_toRightOf="@+id/WeatherImage"
-            android:layout_toEndOf="@+id/WeatherImage"
-            android:layout_marginTop="101dp"/>
+
+    <TextView android:id="@+id/quote"
+              android:layout_width="wrap_content"
+              android:layout_height="80dp"
+              android:layout_below="@+id/temperature"
+              android:textSize="17dp"
+              android:textStyle="italic"
+              android:text="@string/quote"
+              android:paddingTop="40dp"
+              android:layout_centerHorizontal="true"
+    />
 
 
     <Button android:id="@+id/favouriteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
             android:text="Favourite"
             android:textAlignment="center"
-            android:paddingLeft="30dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginStart="36dp"
-            android:layout_alignTop="@+id/forecastButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:background="@color/green"
+            android:layout_below="@id/quote"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            />
+
+    <Button android:id="@+id/forecastButton"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Forecast"
+            android:background="@color/pink"
+            android:layout_toRightOf="@+id/favouriteButton"
+            android:layout_marginLeft="@dimen/smallPadding"
+            android:layout_alignTop="@+id/favouriteButton"
+            android:layout_alignBottom="@+id/favouriteButton"/>
 
 </RelativeLayout>
