@@ -5,14 +5,18 @@
         android:id="@+id/activity_detailweather"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:name="android.support.PARENT_ACTIVITY"
         tools:context="com.example.rajashrk.weatherapp.DetailWeatherActivity"
         android:background="@drawable/gradient"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 >
+
+    <include
+            android:id="@+id/toolbar11"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <FrameLayout
             android:id="@+id/container"
@@ -24,6 +28,7 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/toolbar11"
     />
 
 </RelativeLayout>

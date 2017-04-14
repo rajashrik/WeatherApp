@@ -5,25 +5,20 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
-
 import android.widget.TextView;
-import com.example.rajashrk.weatherapp.adapter.WeatherListAdapter;
 import com.example.rajashrk.weatherapp.model.Weather;
 import com.example.rajashrk.weatherapp.model.WeatherForecastResponse;
-import com.example.rajashrk.weatherapp.model.WeatherList;
 import com.example.rajashrk.weatherapp.presenter.WeatherPresenter;
 import com.google.gson.Gson;
 
-import Tasks.AsyncWeatherTask;
-
-import java.io.*;
-import java.text.DateFormat;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener, WeatherResponseListener {
@@ -34,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showWeatherOfCurrentCity();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void showWeatherOfCurrentCity() {
@@ -61,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
         TextView date  = (TextView) findViewById(R.id.date);
         date.setText(weekday_name);
-
 
         Button forecast = (Button) findViewById(R.id.forecastButton);
         forecast.setOnClickListener(this);

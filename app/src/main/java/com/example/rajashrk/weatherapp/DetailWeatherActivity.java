@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 public class DetailWeatherActivity extends AppCompatActivity {
@@ -16,8 +17,15 @@ public class DetailWeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_weather);
         weatherData = getIntent().getStringExtra("weatherData");
-        showDetailWeatherPage();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        showDetailWeatherPage(); Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // add back arrow to toolbar
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        setTitle("Forecast for the week");
     }
 
     private void showDetailWeatherPage() {
