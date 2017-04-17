@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.rajashrk.weatherapp.model.Weather;
 import com.example.rajashrk.weatherapp.model.WeatherForecastResponse;
 import com.example.rajashrk.weatherapp.presenter.WeatherPresenter;
@@ -21,9 +21,10 @@ import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements Button.OnClickListener, WeatherResponseListener {
+public class MainActivity extends AppCompatActivity implements WeatherResponseListener {
 
     private  Weather currentWeather = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,25 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         showWeatherOfCurrentCity();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    public void fetchForecast(View view) {
+        String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
+        AsyncWeatherForecastTask task = new AsyncWeatherForecastTask(this);
+        task.execute(weatherUrl);
+    }
+
+    @Override
+    public void weatherForecastReceived(String data) {
+        Gson gson = new Gson();
+        WeatherForecastResponse weatherList = gson.fromJson(data, WeatherForecastResponse.class);
+        showWeatherForecast(weatherList);
+    }
+
+    @Override
+    public void weatherForecastFailed() {
+        Toast toast = Toast.makeText(this, "Failed to fetch weather forecast", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     private void showWeatherOfCurrentCity() {
@@ -58,17 +78,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
         TextView date  = (TextView) findViewById(R.id.date);
         date.setText(weekday_name);
-
-        Button forecast = (Button) findViewById(R.id.forecastButton);
-        forecast.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
-        AsyncWeatherForecastTask task = new AsyncWeatherForecastTask(this);
-        task.execute(weatherUrl);
     }
 
     private void showWeatherForecast(WeatherForecastResponse weatherList) {
@@ -77,12 +86,5 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         String weatherData = gson.toJson(weatherList, WeatherForecastResponse.class);
         intent.putExtra("weatherData", weatherData);
         startActivity(intent);
-    }
-
-    @Override
-    public void weatherForecastReceived(String data) {
-        Gson gson = new Gson();
-        WeatherForecastResponse weatherList = gson.fromJson(data, WeatherForecastResponse.class);
-        showWeatherForecast(weatherList);
     }
 }
