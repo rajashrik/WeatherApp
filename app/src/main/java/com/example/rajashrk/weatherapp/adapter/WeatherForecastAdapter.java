@@ -77,8 +77,8 @@ public class WeatherForecastAdapter extends BaseAdapter {
         WeatherForecastAdapter.ViewHolder viewHolder = (WeatherForecastAdapter.ViewHolder) view.getTag();
         WeatherForecast weather = weatherList.get(position);
         WeatherForecastPresenter presenter = new WeatherForecastPresenter(weather);
-        viewHolder.temperature_max.setText(presenter.getTemperatureMaxIncelcius());
-        viewHolder.temperature_min.setText(presenter.getTemperatureMinIncelcius());
+        viewHolder.temperature_max.setText(presenter.getTemperatureMaxInCelsius());
+        viewHolder.temperature_min.setText(presenter.getTemperatureMinInCelsius());
         viewHolder.up_arrow.setText(R.string.upArrow);
         viewHolder.weatherImg.setImageResource(getWeatherIcon(weatherList.get(position).getWeather().getDescription()));
 

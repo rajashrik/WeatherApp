@@ -2,9 +2,6 @@ package com.example.rajashrk.weatherapp.model;
 
 import java.util.List;
 
-/**
- * Created by jhansirk on 09/04/17.
- */
 public class Weather {
 
     private String name;

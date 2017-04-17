@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     }
 
     public void fetchForecast(View view) {
-        String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
+        String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&units=metric" + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
         AsyncWeatherForecastTask task = new AsyncWeatherForecastTask(this);
         task.execute(weatherUrl);
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
         cityName.setText(currentWeather.getName());
 
         TextView temperature  = (TextView) findViewById(R.id.temperature);
-        temperature.setText(presenter.getTemperatureIncelcius());
+        temperature.setText(presenter.getTemperatureInCelsius());
 
 
         String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
