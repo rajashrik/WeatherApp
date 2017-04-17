@@ -10,6 +10,6 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="@color/cyan"
-            app:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     />
 </RelativeLayout>

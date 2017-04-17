@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.rajashrk.weatherapp.MainActivity"
-        android:background="@drawable/gradient"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    tools:context="com.example.rajashrk.weatherapp.MainActivity">
 
 
     <include
-            android:id="@+id/toolbar11"
-            layout="@layout/toolbar"
+        android:id="@+id/toolbar11"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar11"
+        android:background="@drawable/gradient"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:context="com.example.rajashrk.weatherapp.MainActivity">
+
+        <TextView
+            android:id="@+id/cityName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="Hyderabad"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-    <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <TextView
+            android:id="@+id/date"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.example.rajashrk.weatherapp.MainActivity"
-            android:background="@drawable/gradient"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:layout_below="@+id/toolbar11"
-    >
-
-    <TextView android:id="@+id/cityName"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="18dp"
-              android:textStyle="bold"
-              android:text="Hyderabad"
-              android:gravity="center"
-              android:paddingTop="10dp"/>
-
-    <TextView android:id="@+id/date"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="15dp"
-              android:textStyle="normal"
-              android:layout_below="@+id/cityName"
-              android:text=""
-              android:gravity="center"
-              android:paddingTop="10dp"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cityName"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text=""
+            android:textSize="15dp"
+            android:textStyle="normal" />
 
     <ImageView android:id="@+id/weatherImage"
                android:layout_width="140dp"
@@ -54,59 +53,72 @@
                android:layout_centerHorizontal="true"/>
 
 
-    <TextView android:id="@+id/weatherDescription"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@+id/weatherImage"
-              android:textSize="18dp"
-              android:textStyle="normal"
-              android:text="cloudy"
-              android:paddingTop="10dp"
-              android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/weatherDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weatherImage"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:text="cloudy"
+            android:textSize="18dp"
+            android:textStyle="normal" />
 
-    <TextView android:id="@+id/temperature"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@+id/weatherDescription"
-              android:textSize="60dp"
-              android:textStyle="normal"
-              android:text="23C"
-              android:paddingTop="20dp"
-              android:layout_centerHorizontal="true"/>
-
-
-    <TextView android:id="@+id/quote"
-              android:layout_width="wrap_content"
-              android:layout_height="80dp"
-              android:layout_below="@+id/temperature"
-              android:textSize="17dp"
-              android:textStyle="italic"
-              android:text="@string/quote"
-              android:paddingTop="40dp"
-              android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/weatherDescription"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp"
+            android:text="23C"
+            android:textSize="60dp"
+            android:textStyle="normal" />
 
 
-    <Button android:id="@+id/favouriteButton"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:text="Favourite"
-            android:textAlignment="center"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:background="@color/green"
+        <TextView
+            android:id="@+id/quote"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_below="@+id/temperature"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="40dp"
+            android:text="@string/quote"
+            android:textSize="17dp"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_below="@id/quote"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"/>
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="40dp">
 
-    <Button android:id="@+id/forecastButton"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:text="Forecast"
-            android:onClick="fetchForecast"
-            android:background="@color/pink"
-            android:layout_toRightOf="@+id/favouriteButton"
-            android:layout_marginLeft="@dimen/smallPadding"
-            android:layout_alignTop="@+id/favouriteButton"
-            android:layout_alignBottom="@+id/favouriteButton"/>
+            <Button
+                android:id="@+id/favouriteButton"
+                android:background="@color/green"
+                android:onClick="saveAsFavourite"
+                android:text="@string/favourite"
+                android:layout_weight="0.5"
+                android:layout_marginEnd="20dp"
+                android:visibility="visible"
+                android:layout_height="match_parent"
+                android:layout_width="120dp" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/forecastButton"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@color/pink"
+                android:onClick="fetchForecast"
+                android:text="@string/forecast"
+                android:layout_width="120dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

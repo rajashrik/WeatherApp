@@ -11,5 +11,7 @@
     <string name="upArrow">↑</string>
     <string name="downArrow">↓</string>
     <string name="quote">Enjoy the clouds, awaits for splashes</string>
+    <string name="favourite">Favourite</string>
+    <string name="forecast">Forecast</string>
 
 </resources>

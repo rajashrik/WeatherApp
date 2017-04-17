@@ -1,8 +1,8 @@
 package com.example.rajashrk.weatherapp;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +17,8 @@ public class DetailWeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_weather);
         weatherData = getIntent().getStringExtra("weatherData");
-        showDetailWeatherPage(); Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        showDetailWeatherPage();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // add back arrow to toolbar
         if (getSupportActionBar() != null){

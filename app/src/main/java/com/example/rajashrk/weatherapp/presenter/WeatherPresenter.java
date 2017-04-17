@@ -13,8 +13,5 @@ public class WeatherPresenter {
         public String getTemperatureInCelsius() {
             return String.valueOf(weather.getMain().getTemp()) + "\u00b0" + "C";
         }
-        private Double kelvinToCelsiusConvert(Float temp) {
-            return  Math.floor(temp - 273.15);
-        }
 
 }

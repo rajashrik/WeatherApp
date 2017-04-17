@@ -1,13 +1,15 @@
-package Tasks;
+package com.example.rajashrk.weatherapp.tasks;
 
 import android.os.AsyncTask;
+
 import com.example.rajashrk.weatherapp.WeatherResponseListener;
+
+import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import java.io.IOException;
 
 public class AsyncWeatherForecastTask extends AsyncTask<String, Void, String> {
 
