@@ -8,6 +8,7 @@ public class WeatherForecast {
     private Temperature temp;
     private Float pressure;
     private Float humidity;
+    private long dt;
 
     public Temperature getTemperature() {
         return temp;
@@ -21,6 +22,10 @@ public class WeatherForecast {
 
     public Weather getWeather() {
         return weather.get(0);
+    }
+
+    public long getTimestamp() {
+        return dt;
     }
 
 

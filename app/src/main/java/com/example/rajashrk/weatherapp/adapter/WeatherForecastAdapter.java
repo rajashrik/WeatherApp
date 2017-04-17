@@ -65,7 +65,7 @@ public class WeatherForecastAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView cityName;
+        TextView day;
         TextView temperature_max;
         TextView temperature_min;
         TextView up_arrow;
@@ -79,9 +79,9 @@ public class WeatherForecastAdapter extends BaseAdapter {
         WeatherForecastPresenter presenter = new WeatherForecastPresenter(weather);
         viewHolder.temperature_max.setText(presenter.getTemperatureMaxInCelsius());
         viewHolder.temperature_min.setText(presenter.getTemperatureMinInCelsius());
+        viewHolder.day.setText(presenter.getDayOfTheWeek());
         viewHolder.up_arrow.setText(R.string.upArrow);
         viewHolder.weatherImg.setImageResource(getWeatherIcon(weatherList.get(position).getWeather().getDescription()));
-
     }
 
     private int getWeatherIcon(String weatherStatus) {
@@ -91,8 +91,8 @@ public class WeatherForecastAdapter extends BaseAdapter {
     private View createView() {
         View view = inflater.inflate(R.layout.list_weather_details_item, null);
         WeatherForecastAdapter.ViewHolder viewHolder = new WeatherForecastAdapter.ViewHolder();
-        viewHolder.cityName = (TextView) view.findViewById(R.id.cityName);
         viewHolder.temperature_max = (TextView) view.findViewById(R.id.temperature_max);
+        viewHolder.day = (TextView) view.findViewById(R.id.day);
         viewHolder.temperature_min = (TextView) view.findViewById(R.id.temperature_min);
         viewHolder.up_arrow = (TextView) view.findViewById(R.id.temperature_max_arrow);
         viewHolder.weatherImg = (ImageView) view.findViewById(R.id.weatherimg);
