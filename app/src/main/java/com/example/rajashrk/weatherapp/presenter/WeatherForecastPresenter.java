@@ -1,10 +1,5 @@
 package com.example.rajashrk.weatherapp.presenter;
 
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.TimeZone;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import com.example.rajashrk.weatherapp.model.WeatherForecast;
 
 import java.util.Arrays;
