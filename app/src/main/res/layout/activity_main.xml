@@ -49,7 +49,6 @@
     <ImageView android:id="@+id/weatherImage"
                android:layout_width="140dp"
                android:layout_height="100dp"
-               android:src="@drawable/clouds"
                android:layout_below="@+id/date"
                android:layout_marginTop="16dp"
                android:layout_centerHorizontal="true"/>

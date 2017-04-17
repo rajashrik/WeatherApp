@@ -10,7 +10,6 @@
         tools:context="com.example.rajashrk.weatherapp.DetailWeatherActivity"
         android:background="@drawable/gradient"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
->
 
     <include
             android:id="@+id/toolbar11"

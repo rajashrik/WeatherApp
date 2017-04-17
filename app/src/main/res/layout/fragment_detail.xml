@@ -5,8 +5,6 @@
              tools:context="com.example.rajashrk.weatherapp.DetailFragment"
              android:orientation="vertical"
              >
->
-
     <!-- TODO: Update blank fragment layout -->
     <TextView
             android:id="@+id/city"
