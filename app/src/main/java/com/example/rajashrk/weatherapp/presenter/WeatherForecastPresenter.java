@@ -31,12 +31,10 @@ public class WeatherForecastPresenter {
         return String.valueOf(weather.getTemperature().getMaximum()) + "\u00b0" + "C";
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public String getDayOfTheWeek() {
 
         long unixSeconds = weather.getTimestamp();
-        Date date = new Date(unixSeconds*1000L); // *1000 is to convert seconds to milliseconds
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z"); // the format of your date
+        Date date = new Date(unixSeconds*1000L);
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);

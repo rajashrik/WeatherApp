@@ -34,7 +34,7 @@ public class WeatherForecastAdapter extends BaseAdapter {
     }
 
     private void constructweatherIconMap() {
-        weatherIconsList.put("light rain",R.drawable.cloud);
+        weatherIconsList.put("light rain",R.drawable.rain);
         weatherIconsList.put("moderate rain",R.drawable.sun);
         weatherIconsList.put("sky is clear",R.drawable.cloud);
     }
