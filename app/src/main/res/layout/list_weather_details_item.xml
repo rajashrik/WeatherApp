@@ -18,6 +18,14 @@
             android:text="Monday"
     />
 
+    <ImageView
+        android:id="@+id/weatherimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/day"
+        android:paddingLeft="@dimen/smallPadding"
+        />
+
 
     <TextView
             android:id="@+id/temperature_max"
@@ -25,7 +33,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:textSize="15sp"
-            android:layout_toRightOf="@id/day"
+            android:layout_toRightOf="@id/weatherimg"
             android:paddingLeft="@dimen/smallPadding"
             android:typeface="normal" />
 
