@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="10dp"
-            android:text="Hyderabad"
-            android:textSize="18dp"
+            android:text="@string/hyderabad"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:text=""
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
     <ImageView android:id="@+id/weatherImage"
@@ -50,6 +50,7 @@
                android:layout_height="100dp"
                android:layout_below="@+id/date"
                android:layout_marginTop="16dp"
+               android:contentDescription="@string/weather_image"
                android:layout_centerHorizontal="true"/>
 
 
@@ -60,8 +61,8 @@
             android:layout_below="@+id/weatherImage"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="cloudy"
-            android:textSize="18dp"
+            android:text="@string/cloudy"
+            android:textSize="18sp"
             android:textStyle="normal" />
 
         <TextView
@@ -71,8 +72,8 @@
             android:layout_below="@+id/weatherDescription"
             android:layout_centerHorizontal="true"
             android:paddingTop="20dp"
-            android:text="23C"
-            android:textSize="60dp"
+            android:text="@string/_23c"
+            android:textSize="60sp"
             android:textStyle="normal" />
 
 
@@ -84,7 +85,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="40dp"
             android:text="@string/quote"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:textStyle="italic" />
 
         <LinearLayout
@@ -99,6 +100,7 @@
             android:layout_height="40dp">
 
             <Button
+                style="@style/Widget.AppCompat.Button"
                 android:id="@+id/favouriteButton"
                 android:background="@color/green"
                 android:onClick="saveAsFavourite"
@@ -110,6 +112,7 @@
                 android:layout_width="120dp" />
 
             <Button
+                style="@style/Widget.AppCompat.Button"
                 android:id="@+id/forecastButton"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
