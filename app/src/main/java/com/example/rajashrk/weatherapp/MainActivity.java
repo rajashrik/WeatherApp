@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
 
     @Override
     public void showSaveAsFavouriteButton(int visibility) {
-        Button favouriteButton = (Button) findViewById(R.id.favouriteButton);
-        favouriteButton.setVisibility(visibility);
+        TextView addToFavourites = (TextView) findViewById(R.id.addAsFavourite);
+        addToFavourites.setVisibility(visibility);
     }
 
     @Override

@@ -8,13 +8,6 @@
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:context="com.example.rajashrk.weatherapp.MainActivity">
 
-
-    <include
-        android:id="@+id/toolbar11"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -86,39 +79,27 @@
             android:textSize="17sp"
             android:textStyle="italic" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_below="@id/quote"
-            android:weightSum="1"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_height="40dp">
+        <Button android:id="@+id/forecastButton"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Forecast"
+            android:onClick="fetchForecast"
+            android:background="@color/pink"
+            android:layout_marginLeft="@dimen/smallPadding"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/quote"
+            />
 
-            <Button
-                style="@style/Widget.AppCompat.Button"
-                android:id="@+id/favouriteButton"
-                android:background="@color/green"
-                android:onClick="saveAsFavourite"
-                android:text="@string/favourite"
-                android:layout_weight="0.5"
-                android:visibility="visible"
-                android:layout_height="match_parent"
-                android:layout_width="120dp" />
-
-            <Button
-                style="@style/Widget.AppCompat.Button"
-                android:id="@+id/forecastButton"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:background="@color/pink"
-                android:onClick="fetchForecast"
-                android:text="@string/forecast"
-                android:layout_width="120dp" />
-
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/add_as_favourite"
+            android:id="@+id/addAsFavourite"
+            android:layout_below="@+id/forecastButton"
+            android:paddingTop="40dp"
+            android:textSize="17sp"
+            android:onClick="saveAsFavourite"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 </RelativeLayout>
