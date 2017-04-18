@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="10dp"
-            android:text="@string/hyderabad"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -61,7 +60,6 @@
             android:layout_below="@+id/weatherImage"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="@string/cloudy"
             android:textSize="18sp"
             android:textStyle="normal" />
 
@@ -106,7 +104,6 @@
                 android:onClick="saveAsFavourite"
                 android:text="@string/favourite"
                 android:layout_weight="0.5"
-                android:layout_marginEnd="20dp"
                 android:visibility="visible"
                 android:layout_height="match_parent"
                 android:layout_width="120dp" />

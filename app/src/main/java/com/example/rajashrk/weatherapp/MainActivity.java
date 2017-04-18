@@ -93,15 +93,17 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
         TextView cityName = (TextView) findViewById(R.id.cityName);
         cityName.setText(currentWeather.getName());
 
+        TextView date = (TextView) findViewById(R.id.date);
+        date.setText(presenter.getDayOfTheWeek());
+
         TextView temperature = (TextView) findViewById(R.id.temperature);
         temperature.setText(presenter.getTemperatureInCelsius());
 
+        TextView weatherDescription = (TextView) findViewById(R.id.weatherDescription);
+        weatherDescription.setText(currentWeather.getWeather().get(0).getDescription());
+
         ImageView weatherImage = (ImageView) findViewById(R.id.weatherImage);
         weatherImage.setImageResource(weatherStatusImageMap.get(currentWeather.getWeather().get(0).getDescription()));
-
-        String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
-        TextView date = (TextView) findViewById(R.id.date);
-        date.setText(weekday_name);
     }
 
     private void showFavouriteButtonIfNotSavedAsFavourite() {
