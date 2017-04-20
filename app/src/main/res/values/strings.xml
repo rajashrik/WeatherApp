@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="api_key">ebbc66b823072502c81339f5b0b9b042</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
@@ -18,5 +15,7 @@
     <string name="_23c">23C</string>
     <string name="weather_image">weather image</string>
     <string name="add_as_favourite"> <u>Add as favourite</u></string>
+    <string name="click_to_search">Click to search</string>
+    <string name="enter_city_name_and_click_to_search">Enter city name and click to search</string>
 
 </resources>

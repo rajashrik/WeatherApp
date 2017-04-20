@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +14,7 @@ import com.example.rajashrk.weatherapp.database.FavouritesRepository;
 import com.example.rajashrk.weatherapp.model.Weather;
 import com.example.rajashrk.weatherapp.model.WeatherForecastResponse;
 import com.example.rajashrk.weatherapp.presenter.WeatherPresenter;
+import com.example.rajashrk.weatherapp.tasks.AsyncCurrentWeatherTask;
 import com.example.rajashrk.weatherapp.tasks.AsyncWeatherForecastTask;
 import com.example.rajashrk.weatherapp.tasks.CheckFavouriteAlreadyExistTask;
 import com.example.rajashrk.weatherapp.tasks.SaveFavouriteTask;
@@ -24,31 +24,43 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements WeatherResponseListener, SaveFavouriteListener {
 
+    private static final int SEARCH_CODE = 9999;
     private Weather currentWeather = null;
-    private Map<String, Integer> weatherStatusImageMap = new HashMap<>();
+    private static final Map<String, Integer> weatherStatusImageMap;
+
+    static {
+        weatherStatusImageMap = new HashMap<>();
+        weatherStatusImageMap.put("light rain", R.drawable.rainy_main);
+        weatherStatusImageMap.put("moderate rain", R.drawable.sun);
+        weatherStatusImageMap.put("clear sky", R.drawable.sunny_main);
+        weatherStatusImageMap.put("sky is clear", R.drawable.sunny_main);
+        weatherStatusImageMap.put("sky is clear", R.drawable.sunny_main);
+        weatherStatusImageMap.put("broken clouds", R.drawable.cloud);
+        weatherStatusImageMap.put("haze", R.drawable.cloud);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setWeatherStatusImageMap();
         showWeatherOfCurrentCity();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        View searchImageView = findViewById(R.id.searchImageView);
+        searchImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchSearchActivity();
+            }
+        });
     }
 
-    private void setWeatherStatusImageMap() {
-        weatherStatusImageMap.put("light rain",R.drawable.rainy_main);
-        weatherStatusImageMap.put("moderate rain",R.drawable.sun);
-        weatherStatusImageMap.put("clear sky",R.drawable.sunny_main);
-    }
 
     public void fetchForecast(View view) {
         String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&units=metric" + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
@@ -103,7 +115,12 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
         weatherDescription.setText(currentWeather.getWeather().get(0).getDescription());
 
         ImageView weatherImage = (ImageView) findViewById(R.id.weatherImage);
-        weatherImage.setImageResource(weatherStatusImageMap.get(currentWeather.getWeather().get(0).getDescription()));
+
+        int imageResource = R.drawable.sunny_main;
+        if (weatherStatusImageMap.containsKey(currentWeather.getWeather().get(0).getDescription())) {
+            imageResource = weatherStatusImageMap.get(currentWeather.getWeather().get(0).getDescription());
+        }
+        weatherImage.setImageResource(imageResource);
     }
 
     private void showFavouriteButtonIfNotSavedAsFavourite() {
@@ -128,5 +145,38 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     @Override
     public void displayToast(String toastMessage) {
         Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
+    }
+
+    private void launchSearchActivity() {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivityForResult(intent, SEARCH_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SEARCH_CODE && resultCode == RESULT_OK) {
+            double latitude = data.getDoubleExtra("latitude", -1);
+            double longitude = data.getDoubleExtra("longitude", -1);
+            if (latitude != -1 && longitude != -1) {
+                fetchWeatherForLocation(latitude, longitude);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void fetchWeatherForLocation(double latitude, double longitude) {
+        AsyncCurrentWeatherTask task = new AsyncCurrentWeatherTask(new AsyncCurrentWeatherTask.CurrentWeatherResponseListener() {
+            @Override
+            public void onCurrentWeatherFetched(Weather weather) {
+                MainActivity.this.currentWeather = weather;
+                renderWeatherList();
+            }
+
+            @Override
+            public void onCurrentWeatherFetchFailure() {
+
+            }
+        });
+        task.execute(latitude, longitude);
     }
 }
