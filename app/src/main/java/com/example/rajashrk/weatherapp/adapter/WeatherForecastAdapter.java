@@ -9,33 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rajashrk.weatherapp.R;
+import com.example.rajashrk.weatherapp.WeatherDescriptionToIconTranslator;
 import com.example.rajashrk.weatherapp.model.WeatherForecast;
 import com.example.rajashrk.weatherapp.presenter.WeatherForecastPresenter;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WeatherForecastAdapter extends BaseAdapter {
 
-    private Context context;
     private LayoutInflater inflater;
     private List<WeatherForecast> weatherList;
-    private Map<String, Integer> weatherIconsList = new HashMap<>();
 
     public WeatherForecastAdapter(Context context, List<WeatherForecast> weatherList) {
-        this.context = context;
         inflater = LayoutInflater.from(context);
         this.weatherList = weatherList;
-        constructweatherIconMap();
     }
-
-    private void constructweatherIconMap() {
-        weatherIconsList.put("light rain",R.drawable.rain);
-        weatherIconsList.put("moderate rain",R.drawable.sun);
-        weatherIconsList.put("sky is clear",R.drawable.cloud);
-    }
-
 
     @Override
     public int getCount() {
@@ -82,7 +70,8 @@ public class WeatherForecastAdapter extends BaseAdapter {
     }
 
     private int getWeatherIcon(String weatherStatus) {
-        return weatherIconsList.get(weatherStatus);
+        WeatherDescriptionToIconTranslator translator = new WeatherDescriptionToIconTranslator();
+        return translator.getListImageResourceId(weatherStatus);
     }
 
     private View createView() {

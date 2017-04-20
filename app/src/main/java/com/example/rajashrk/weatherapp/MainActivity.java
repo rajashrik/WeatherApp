@@ -24,25 +24,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements WeatherResponseListener, SaveFavouriteListener {
 
     private static final int SEARCH_CODE = 9999;
     private Weather currentWeather = null;
-    private static final Map<String, Integer> weatherStatusImageMap;
-
-    static {
-        weatherStatusImageMap = new HashMap<>();
-        weatherStatusImageMap.put("light rain", R.drawable.rainy_main);
-        weatherStatusImageMap.put("moderate rain", R.drawable.sun);
-        weatherStatusImageMap.put("clear sky", R.drawable.sunny_main);
-        weatherStatusImageMap.put("sky is clear", R.drawable.sunny_main);
-        weatherStatusImageMap.put("sky is clear", R.drawable.sunny_main);
-        weatherStatusImageMap.put("broken clouds", R.drawable.cloud);
-        weatherStatusImageMap.put("haze", R.drawable.cloud);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,12 +101,8 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
         weatherDescription.setText(currentWeather.getWeather().get(0).getDescription());
 
         ImageView weatherImage = (ImageView) findViewById(R.id.weatherImage);
-
-        int imageResource = R.drawable.sunny_main;
-        if (weatherStatusImageMap.containsKey(currentWeather.getWeather().get(0).getDescription())) {
-            imageResource = weatherStatusImageMap.get(currentWeather.getWeather().get(0).getDescription());
-        }
-        weatherImage.setImageResource(imageResource);
+        WeatherDescriptionToIconTranslator translator = new WeatherDescriptionToIconTranslator();
+        weatherImage.setImageResource(translator.getDetailImageResourceId(currentWeather.getWeather().get(0).getDescription()));
     }
 
     private void showFavouriteButtonIfNotSavedAsFavourite() {
