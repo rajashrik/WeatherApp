@@ -1,8 +1,10 @@
 package com.example.rajashrk.weatherapp;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rajashrk.weatherapp.database.FavouritesRepository;
+import com.example.rajashrk.weatherapp.location.LocationTracker;
 import com.example.rajashrk.weatherapp.model.Weather;
 import com.example.rajashrk.weatherapp.model.WeatherForecastResponse;
 import com.example.rajashrk.weatherapp.presenter.WeatherPresenter;
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     private static final int SEARCH_CODE = 9999;
     private static final int FAVOURITES_CODE = 9998;
     private Weather currentWeather = null;
+    private LocationTracker locationTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,20 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
                 launchFavouritesActivity();
             }
         });
+        locationTracker = new LocationTracker(this);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        locationTracker.refreshLocation();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 200 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)
+            locationTracker.refreshLocation();
     }
 
     public void fetchForecast(View view) {
@@ -80,16 +99,15 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     }
 
     private void showWeatherOfCurrentCity() {
-        AssetManager assetManager = getAssets();
-        try {
-            InputStream inputStream = assetManager.open("cityData.json");
-            Gson gson = new Gson();
-            Reader inputReader = new InputStreamReader(inputStream);
-            currentWeather = gson.fromJson(inputReader, Weather.class);
-            renderWeatherList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        float hyderabadLat = 17.3850f;
+        float hyderabadLong = 78.4867f;
+
+        fetchWeatherForLocation(hyderabadLat, hyderabadLong);
+    }
+
+    public void renderWeatherList(Weather weather) {
+        this.currentWeather = weather;
+        renderWeatherList();
     }
 
     private void renderWeatherList() {
