@@ -10,8 +10,8 @@ public class Weather {
     private Temperature main;
     private Wind wind;
     private Sys sys;
-
     private String dt;
+    private LatLng coord;
 
     public String getDatetime() {
         return dt;
@@ -41,6 +41,9 @@ public class Weather {
         return sys;
     }
 
+    public LatLng getCoord() {
+        return coord;
+    }
 
     public class WeatherDetails {
         private String description;
@@ -116,6 +119,19 @@ public class Weather {
 
         public long getSunset() {
             return sunset;
+        }
+    }
+
+    public class LatLng {
+        private double lat;
+        private double lon;
+
+        public double getLat() {
+            return lat;
+        }
+
+        public double getLon() {
+            return lon;
         }
     }
 }

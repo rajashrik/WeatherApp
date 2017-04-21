@@ -28,6 +28,7 @@ import java.io.Reader;
 public class MainActivity extends AppCompatActivity implements WeatherResponseListener, SaveFavouriteListener {
 
     private static final int SEARCH_CODE = 9999;
+    private static final int FAVOURITES_CODE = 9998;
     private Weather currentWeather = null;
 
     @Override
@@ -45,8 +46,15 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
                 launchSearchActivity();
             }
         });
-    }
 
+        View favouritesImageView = findViewById(R.id.favouritesImageView);
+        favouritesImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchFavouritesActivity();
+            }
+        });
+    }
 
     public void fetchForecast(View view) {
         String weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + currentWeather.getName() + "&units=metric" + "&" + "APPID=" + "ebbc66b823072502c81339f5b0b9b042";
@@ -68,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
 
     public void saveAsFavourite(View view) {
         FavouritesRepository favouritesRepository = new FavouritesRepository(this);
-        new SaveFavouriteTask(favouritesRepository, this).execute(currentWeather.getName());
+        new SaveFavouriteTask(favouritesRepository, this, currentWeather).execute();
     }
 
     private void showWeatherOfCurrentCity() {
@@ -136,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SEARCH_CODE && resultCode == RESULT_OK) {
+        if ((requestCode == SEARCH_CODE || requestCode == FAVOURITES_CODE) && resultCode == RESULT_OK) {
             double latitude = data.getDoubleExtra("latitude", -1);
             double longitude = data.getDoubleExtra("longitude", -1);
             if (latitude != -1 && longitude != -1) {
@@ -160,5 +168,11 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
             }
         });
         task.execute(latitude, longitude);
+    }
+
+
+    private void launchFavouritesActivity() {
+        Intent intent = new Intent(this, FavouritesListActivity.class);
+        startActivityForResult(intent, FAVOURITES_CODE);
     }
 }

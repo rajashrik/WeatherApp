@@ -24,6 +24,15 @@
             android:padding="10dp"
             android:src="@android:drawable/ic_menu_search" />
 
+        <ImageView
+            android:id="@+id/favouritesImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/searchImageView"
+            android:padding="10dp"
+            android:src="@android:drawable/star_big_on" />
+
         <TextView
             android:id="@+id/cityName"
             android:layout_width="match_parent"
