@@ -4,7 +4,6 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:context="com.example.rajashrk.weatherapp.MainActivity">
 
@@ -12,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:background="@drawable/gradient"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:context="com.example.rajashrk.weatherapp.MainActivity">
 
@@ -22,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:padding="10dp"
-            android:src="@android:drawable/ic_menu_search" />
+            android:src="@drawable/search_icon" />
 
         <ImageView
             android:id="@+id/favouritesImageView"
@@ -31,7 +29,7 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/searchImageView"
             android:padding="10dp"
-            android:src="@android:drawable/star_big_on" />
+            android:src="@drawable/favourites" />
 
         <TextView
             android:id="@+id/cityName"
@@ -41,6 +39,7 @@
             android:paddingTop="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             tools:text="Hyderabad" />
 
         <TextView
@@ -51,6 +50,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:text=""
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="normal" />
 
@@ -72,6 +72,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="normal" />
 
         <TextView
@@ -82,6 +83,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="20dp"
             android:text="@string/_23c"
+            android:textColor="@color/black"
             android:textSize="60sp"
             android:textStyle="normal" />
 
@@ -93,6 +95,7 @@
             android:layout_below="@+id/temperature"
             android:layout_centerHorizontal="true"
             android:paddingTop="40dp"
+            android:textColor="@color/black"
             android:text="@string/quote"
             android:textSize="17sp"
             android:textStyle="italic" />
@@ -116,6 +119,7 @@
             android:layout_centerHorizontal="true"
             android:onClick="saveAsFavourite"
             android:paddingTop="40dp"
+            android:textColor="@color/black"
             android:text="@string/add_as_favourite"
             android:textSize="17sp" />
 

@@ -8,7 +8,7 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:name="android.support.PARENT_ACTIVITY"
         tools:context="com.example.rajashrk.weatherapp.DetailWeatherActivity"
-        android:background="@drawable/gradient"
+        android:background="@drawable/gradient_morning"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
     <include

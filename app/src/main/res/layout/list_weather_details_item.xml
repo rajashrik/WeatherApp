@@ -13,6 +13,7 @@
             android:ellipsize="marquee"
             android:textStyle="normal"
             android:textSize="17dp"
+            android:textColor="@color/black"
             android:fontFamily="monospace"
             android:typeface="normal"
             android:text="Monday"
@@ -31,6 +32,7 @@
             android:id="@+id/temperature_max"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:ellipsize="marquee"
             android:textSize="15sp"
             android:layout_toRightOf="@id/weatherimg"
@@ -40,6 +42,7 @@
     <TextView
             android:id="@+id/temperature_max_arrow"
             android:layout_width="wrap_content"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:textSize="17sp"
@@ -56,10 +59,12 @@
             android:layout_toRightOf="@+id/temperature_max_arrow"
             android:ellipsize="marquee"
             android:paddingLeft="@dimen/smallPadding"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:typeface="normal" />
 
     <TextView
+            android:textColor="@color/black"
             android:id="@+id/temperature_min_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

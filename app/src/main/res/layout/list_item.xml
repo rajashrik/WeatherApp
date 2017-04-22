@@ -18,6 +18,7 @@
         android:ellipsize="marquee"
         android:paddingLeft="@dimen/smallPadding"
         android:paddingTop="@dimen/smallPadding"
+        android:textColor="@color/black"
         android:layout_toRightOf="@id/weatherIcon"
         android:textStyle="bold"
         android:textSize="17sp"
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
         android:paddingLeft="@dimen/smallPadding"
+        android:textColor="@color/black"
         android:layout_below="@+id/cityName"
         android:layout_toRightOf="@id/weatherIcon"
         android:fontFamily="sans-serif"
@@ -41,7 +43,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:ellipsize="marquee"
+        android:textColor="@color/black"
         android:textSize="17sp"
         android:typeface="normal" />
-
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements WeatherResponseListener, SaveFavouriteListener {
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setGradientBasedOnTimeOfDay();
         View searchImageView = findViewById(R.id.searchImageView);
         searchImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +67,19 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
             }
         });
         locationTracker = new LocationTracker(this);
+    }
+
+    private void setGradientBasedOnTimeOfDay() {
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        RelativeLayout currentLayout = (RelativeLayout) findViewById(R.id.activity_main);
+        if(hour > 0 && hour <=  12){
+            currentLayout.setBackgroundResource(R.drawable.gradient_morning);
+        }
+        else if(hour > 12 && hour <= 17){
+            currentLayout.setBackgroundResource(R.drawable.gradient_afternoon);
+        } else {
+            currentLayout.setBackgroundResource(R.drawable.gradient_evening);
+        }
     }
 
     @Override
