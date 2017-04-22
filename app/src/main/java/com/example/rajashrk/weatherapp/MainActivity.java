@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     private static final int FAVOURITES_CODE = 9998;
     private Weather currentWeather = null;
     private LocationTracker locationTracker;
-
+    private static final double defaultLat = 17.3850f;
+    private static final double defaultLong = 78.4867f;
+    private static double lat = defaultLat;
+    private static double lon = defaultLong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,11 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        locationTracker.refreshLocation();
+        if(lat == defaultLat && lon == defaultLong) {
+            locationTracker.refreshLocation();
+        }else {
+            showWeatherOfCurrentCity();
+        }
     }
 
     @Override
@@ -99,10 +106,7 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     }
 
     private void showWeatherOfCurrentCity() {
-        float hyderabadLat = 17.3850f;
-        float hyderabadLong = 78.4867f;
-
-        fetchWeatherForLocation(hyderabadLat, hyderabadLong);
+        fetchWeatherForLocation(lat, lon);
     }
 
     public void renderWeatherList(Weather weather) {
@@ -163,11 +167,8 @@ public class MainActivity extends AppCompatActivity implements WeatherResponseLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if ((requestCode == SEARCH_CODE || requestCode == FAVOURITES_CODE) && resultCode == RESULT_OK) {
-            double latitude = data.getDoubleExtra("latitude", -1);
-            double longitude = data.getDoubleExtra("longitude", -1);
-            if (latitude != -1 && longitude != -1) {
-                fetchWeatherForLocation(latitude, longitude);
-            }
+            lat = data.getDoubleExtra("latitude", lat);
+            lon = data.getDoubleExtra("longitude", lon);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
